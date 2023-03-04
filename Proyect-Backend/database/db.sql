@@ -1,8 +1,6 @@
 drop  table if exists user_info cascade;
 drop  table if exists languages cascade;
 drop  table if exists language_level cascade;
-drop  table if exists language_offered cascade;
-drop  table if exists language_wanted cascade;
 
 CREATE TABLE languages (
 	id serial primary key NOT NULL,

@@ -1,6 +1,7 @@
 const pool = require("../db");
 const bcrypt = require("bcrypt");
 const jwtGenerator = require("../utils/jwtGenerator");
+const nodemailer = require("nodemailer");
 
 // Sentences SQL
 const _getAll = "SELECT * FROM user_info";
@@ -80,9 +81,40 @@ const sign_in = async (req, res) => {
   console.log(email, password);
 };
 
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "miguel.desimone98@gmail.com",
+    pass: "MADesimone3098",
+  },
+});
+
+const emailRequest = async (req, res) => {
+  const email = req.body.email;
+  const getEmail = "SELECT email FROM user_info WHERE id = $1";
+  const result = pool.query(getEmail, [email], (error, result));
+  const userEmail = result.rows[0].email;
+};
+
+var mailOptions = {
+  from: "miguel.desimone98@gmail.com",
+  to: userEmail,
+  subject: "Sending Email using Node.js",
+  text: "That was easy!",
+};
+
+transporter.sendMail(mailOptions, function (error, info) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Email sent: " + info.response);
+  }
+});
+
 module.exports = {
   getAll,
   getById,
   createUser,
   sign_in,
+  emailRequest,
 };

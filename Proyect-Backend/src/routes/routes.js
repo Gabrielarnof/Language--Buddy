@@ -1,5 +1,11 @@
-const {Router} = require("express");
-const {getAll, getById, createUser, sign_in} = require("../controllers/controllers");
+const { Router } = require("express");
+const {
+  getAll,
+  getById,
+  createUser,
+  sign_in,
+  emailRequest,
+} = require("../controllers/controllers");
 
 const router = Router();
 
@@ -11,4 +17,6 @@ router.post("/sign-up", createUser);
 
 router.post("/sign-in", sign_in);
 
-module.exports = router;
+router.post("/request", emailRequest);
+
+https: module.exports = router;
