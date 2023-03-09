@@ -115,8 +115,78 @@ pool.query("SELECT email FROM user_info WHERE id = 3", (err, res) => {
       {
         from: "agafarno@hotmail.com",
         to: rows.email,
-        subject: "Hello from Nodemailer!",
-        text: "This is a test email sent using Nodemailer.",
+        subject: "You have a match request in Language Buddy",
+        text: "We are happy to inform you that you have a match request to became a Language Buddy . Click here to see their request",
+      },
+      (err, info) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(`Email sent to ${row.email}: ${info.response}`);
+        }
+      }
+    );
+  });
+
+  // release the connection pool
+});
+
+pool.query("SELECT email FROM user_info WHERE id = 3", (err, res) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: "hotmail",
+    auth: {
+      user: "agafarno@hotmail.com",
+      pass: "Quimica3599**",
+    },
+  });
+
+  res.rows.forEach((rows) => {
+    transporter.sendMail(
+      {
+        from: "agafarno@hotmail.com",
+        to: rows.email,
+        subject: "You have a Language Buddy",
+        text: "We are happy to inform that your match request was accepted. Click here to get in contact with your new Buddy",
+      },
+      (err, info) => {
+        y;
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(`Email sent to ${row.email}: ${info.response}`);
+        }
+      }
+    );
+  });
+
+  // release the connection pool
+});
+pool.query("SELECT email FROM user_info WHERE id = 1", (err, res) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: "hotmail",
+    auth: {
+      user: "agafarno@hotmail.com",
+      pass: "Quimica3599**",
+    },
+  });
+
+  res.rows.forEach((rows) => {
+    transporter.sendMail(
+      {
+        from: "agafarno@hotmail.com",
+        to: rows.email,
+        subject: "Your request has been rejected",
+        text: "We regret to inform you that your match request was rejected. Click here to find a new match",
       },
       (err, info) => {
         if (err) {
