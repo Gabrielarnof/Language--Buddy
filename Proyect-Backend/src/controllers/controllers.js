@@ -81,40 +81,76 @@ const sign_in = async (req, res) => {
   console.log(email, password);
 };
 
-var transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "miguel.desimone98@gmail.com",
-    pass: "MADesimone3098",
-  },
-});
+// const emailRequest = async (req, res) => {
+//   const email = req.body.email;
+//   const getEmail = "SELECT email FROM user_info WHERE id = 3";
+//   const result = pool.query(getEmail, [email], (error, result));
+//   const userEmail = result.rows[0].email;
+// };
 
-const emailRequest = async (req, res) => {
-  const email = req.body.email;
-  const getEmail = "SELECT email FROM user_info WHERE id = $1";
-  const result = pool.query(getEmail, [email], (error, result));
-  const userEmail = result.rows[0].email;
-};
+// const transporter = nodemailer.createTransport({
+//   service: "Hotmail",
+//   auth: {
+//     user: "migue.desimone@hotmail.com",
+//     pass: "Desimone98",
+//   },
+// });
 
-var mailOptions = {
-  from: "miguel.desimone98@gmail.com",
-  to: userEmail,
-  subject: "Sending Email using Node.js",
-  text: "That was easy!",
-};
-
-transporter.sendMail(mailOptions, function (error, info) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Email sent: " + info.response);
+pool.query("SELECT email FROM user_info WHERE id = 3", (err, res) => {
+  if (err) {
+    console.error(err);
+    return;
   }
+
+  const transporter = nodemailer.createTransport({
+    service: "hotmail",
+    auth: {
+      user: "agafarno@hotmail.com",
+      pass: "Quimica3599**",
+    },
+  });
+
+  res.rows.forEach((rows) => {
+    transporter.sendMail(
+      {
+        from: "agafarno@hotmail.com",
+        to: rows.email,
+        subject: "Hello from Nodemailer!",
+        text: "This is a test email sent using Nodemailer.",
+      },
+      (err, info) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(`Email sent to ${row.email}: ${info.response}`);
+        }
+      }
+    );
+  });
+
+  // release the connection pool
+  pool.end();
 });
+
+// var mailOptions = {
+//   from: "migue.desimone@hotmail.com",
+//   to: userEmail,
+//   subject: "Sending Email using Node.js",
+//   text: "That was easy!",
+// };
+
+// transporter.sendMail(mailOptions, function (error, info) {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("Email sent: " + info.response);
+//   }
+// });
 
 module.exports = {
   getAll,
   getById,
   createUser,
   sign_in,
-  emailRequest,
+  // emailRequest,
 };
