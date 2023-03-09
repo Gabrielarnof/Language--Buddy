@@ -60,3 +60,20 @@ h3 {
   cursor: pointer;
   background: #e25408;
 }
+
+
+
+.btn-primary {
+  width: 160px;
+  padding: 5px 33px;
+  background: #C85517;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  color: #F5F5F5;
+  border: none;
+}
+

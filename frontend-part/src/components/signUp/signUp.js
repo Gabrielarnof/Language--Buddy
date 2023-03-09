@@ -50,6 +50,7 @@ function SignUp() {
     if(!fullname || fullname === "") newErrors.fullname = "Please enter your fullname"
     else if( /^[a-zA-Z ]*$/.test(fullname) != true) newErrors.fullname = "Please enter correct fullname"
     if(!username || username === "") newErrors.username = "Please enter your username"
+    else if( username.length > 13) newErrors.username = "Your username must be contain at most 13 characters"
     if(!email || email === "") newErrors.email = "Please enter your email"
     else if(  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) != true) newErrors.email = "Please enter correct email format"
     if(!password || password === "") newErrors.password = "Please enter your password"
@@ -71,21 +72,12 @@ function SignUp() {
      setErrors(formErrors)
   } else {
     register();
-    console.log (form)
   }
  }
 
 
-
-
-// function handleBirthdayInput (event) {
-//   const tempDate = new Date(event.target.value);
-//   const formattedDate = [tempDate.getMonth() + 1, tempDate.getDate(), tempDate.getFullYear()].join('/');
-//   setBirth(formattedDate)
-// }
-
-function register() {
-     fetch('http://localhost:3000/sign-up', {
+async function register() {
+     await fetch('http://localhost:4000/sign-up', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
@@ -115,21 +107,20 @@ function register() {
      }
   })
   .then(data => {
-    window.localStorage.setItem('jwtToken', data.jwtToken)
+    localStorage.setItem('jwtToken', data.jwtToken);
     nav("/profile_created")
-    setTimeout(() => {nav("/list")}, 4000)
+    setTimeout(() => {nav("/login")}, 4000)
   })
   .catch(error => console.log(error))
 }
 
-   
   return (
     <div className="wrapper">
     <div className="signup_wrapper">
       <Logo />
       <div className="signup__content">
          <h3>Create your profile</h3>
-         <h4 className='exist_container'>User already exist!</h4>
+         <h4 className="exist_container">User already exist!</h4>
     <Form >
           
       <Row className="mb-2">

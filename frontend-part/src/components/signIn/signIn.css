@@ -30,6 +30,14 @@
   color: #c85517;
 }
 
-.signin_login_button {
+
+.invalid_container {
+  visibility: hidden;
+}
+
+.invalid_container.visible {
+  visibility:visible;
+  color: red;
   text-align: center;
+  background-color: yellow;
 }

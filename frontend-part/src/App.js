@@ -1,10 +1,12 @@
-import './App.css';
-import Home from './components/home/home';
-import { Routes, Route } from 'react-router-dom';
-import SignIn from './components/signIn/signIn';
-import SignUp from './components/signUp/signUp';
-import Profile_created from './components/profile_created/profile_created';
-import List from "./components/list/list";
+import "./App.css";
+import Home from "./components/home/home";
+import { Routes, Route } from "react-router-dom";
+import SignIn from "./components/signIn/signIn";
+import SignUp from "./components/signUp/signUp";
+import Profile_created from "./components/profile_created/profile_created";
+import People from "./components/people/people";
+import Profile from "./components/profile/profile";
+import EditProfile from "./components/editProfile/editProfile";
 
 function App() {
   return (
@@ -13,9 +15,10 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
-        <Route path="/register" element={<SignUp />} />
         <Route path="/profile_created" element={<Profile_created />} />
-        <Route path="/list" element={<List />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/edit_profile" element={<EditProfile />} />
+        <Route path="/people" element={<People />} />
       </Routes>
     </div>
   );
