@@ -145,7 +145,7 @@ const delete_user = async (req, res) => {
 
   try {
     await pool
-      .query("DELETE FROM user_info WHERE id=$1", [id])
+      .query("DELETE FROM user_info WHERE id= $1", [id])
       .then(() => res.send(`User ${id} deleted!`));
   } catch (error) {
     console.log(error.message);
@@ -197,7 +197,7 @@ const auth = async (req, res) => {
 // });
 
 const buddy_Request = async (req, res) => {
-  pool.query("SELECT email FROM user_info WHERE id = $1", (err, res) => {
+  pool.query("SELECT email FROM user_info WHERE id = 3", (err, res) => {
     if (err) {
       console.error(err);
       return;
@@ -207,7 +207,7 @@ const buddy_Request = async (req, res) => {
       service: "hotmail",
       auth: {
         user: "agafarno@hotmail.com",
-        pass: "11",
+        pass: "Quimica3599**",
       },
     });
 
@@ -231,7 +231,7 @@ const buddy_Request = async (req, res) => {
   });
 };
 const buddyAccepted = async (req, res) => {
-  pool.query("SELECT email FROM user_info WHERE id = $1", (err, res) => {
+  pool.query("SELECT email FROM user_info WHERE id = 3", (err, res) => {
     if (err) {
       console.error(err);
       return;
@@ -241,7 +241,7 @@ const buddyAccepted = async (req, res) => {
       service: "hotmail",
       auth: {
         user: "agafarno@hotmail.com",
-        pass: "11",
+        pass: "Quimica3599**",
       },
     });
 
@@ -250,7 +250,7 @@ const buddyAccepted = async (req, res) => {
         {
           from: "agafarno@hotmail.com",
           to: rows.email,
-          subject: "You have a Language Buddy",
+          subject: "Your request  has been  accepted",
           text: "We are happy to inform that your match request was accepted. Click here to get in contact with your new Buddy",
         },
         (err, info) => {
@@ -267,7 +267,7 @@ const buddyAccepted = async (req, res) => {
 };
 
 const buddyRejected = async (req, res) => {
-  pool.query("SELECT email FROM user_info WHERE id = $1", (err, res) => {
+  pool.query("SELECT email FROM user_info WHERE id = 3", (err, res) => {
     if (err) {
       console.error(err);
       return;
@@ -277,7 +277,7 @@ const buddyRejected = async (req, res) => {
       service: "hotmail",
       auth: {
         user: "agafarno@hotmail.com",
-        pass: "11",
+        pass: "Quimica3599**",
       },
     });
 
@@ -300,7 +300,6 @@ const buddyRejected = async (req, res) => {
     });
 
     // release the connection pool
-    pool.end();
   });
 };
 

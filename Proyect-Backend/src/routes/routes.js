@@ -10,7 +10,7 @@ const {
   edit,
   delete_user,
   auth,
-  buddy_request,
+  // buddy_request,
   buddyAccepted,
   buddyRejected,
   buddy_Request,
