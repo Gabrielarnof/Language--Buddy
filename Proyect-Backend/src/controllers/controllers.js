@@ -196,8 +196,8 @@ const auth = async (req, res) => {
 //   },
 // });
 
-const buddy_request = async (req, res) => {
-  pool.query("SELECT email FROM user_info WHERE id = 3", (err, res) => {
+const buddy_Request = async (req, res) => {
+  pool.query("SELECT email FROM user_info WHERE id = $1", (err, res) => {
     if (err) {
       console.error(err);
       return;
@@ -231,7 +231,7 @@ const buddy_request = async (req, res) => {
   });
 };
 const buddyAccepted = async (req, res) => {
-  pool.query("SELECT email FROM user_info WHERE id = 3", (err, res) => {
+  pool.query("SELECT email FROM user_info WHERE id = $1", (err, res) => {
     if (err) {
       console.error(err);
       return;
@@ -267,7 +267,7 @@ const buddyAccepted = async (req, res) => {
 };
 
 const buddyRejected = async (req, res) => {
-  pool.query("SELECT email FROM user_info WHERE id = 1", (err, res) => {
+  pool.query("SELECT email FROM user_info WHERE id = $1", (err, res) => {
     if (err) {
       console.error(err);
       return;
@@ -323,7 +323,7 @@ module.exports = {
   getAll,
   getById,
   createUser,
-  buddy_request,
+  buddy_Request,
   buddyRejected,
   buddyAccepted,
   login,

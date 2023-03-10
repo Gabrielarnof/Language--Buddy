@@ -13,6 +13,7 @@ const {
   buddy_request,
   buddyAccepted,
   buddyRejected,
+  buddy_Request,
 } = require("../controllers/controllers");
 
 const router = Router();
@@ -31,11 +32,11 @@ router.delete("/users/:id", authenticate, delete_user);
 
 router.post("/auth", authenticate, auth);
 
-router.post("/request", buddy_request);
+router.post("/request", buddy_Request);
 
-router.post("/request_Accepted", buddyAccepted);
+router.post("/accepted", buddyAccepted);
 
-router.post("/request_Rejected", buddyRejected);
+router.post("/rejected", buddyRejected);
 
 // router.post("/request", emailRequest);
 
