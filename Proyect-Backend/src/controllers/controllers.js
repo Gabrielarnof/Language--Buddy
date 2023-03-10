@@ -197,7 +197,7 @@ const auth = async (req, res) => {
 // });
 
 const buddy_Request = async (req, res) => {
-  pool.query("SELECT email FROM user_info WHERE id =1", (err, res) => {
+  pool.query("SELECT email FROM user_info WHERE id =2", (err, res) => {
     if (err) {
       console.error(err);
       return;
@@ -209,7 +209,7 @@ const buddy_Request = async (req, res) => {
     //   service: "hotmail",
     //   auth: {
     //     user: "agafarno@hotmail.com",
-    //     pass: "Quimica3599**",
+    //     pass: "Quimica3599**",S
     //   },
     // });
     const transporter = nodemailer.createTransport({
@@ -280,7 +280,7 @@ const buddy_Request = async (req, res) => {
 // }
 
 const buddyAccepted = async (req, res) => {
-  pool.query("SELECT email FROM user_info WHERE id = 1", (err, res) => {
+  pool.query("SELECT email FROM user_info WHERE id = 2", (err, res) => {
     if (err) {
       console.error(err);
       return;
@@ -318,7 +318,7 @@ const buddyAccepted = async (req, res) => {
 };
 
 const buddyRejected = async (req, res) => {
-  pool.query("SELECT email FROM user_info WHERE id = 1", (err, res) => {
+  pool.query("SELECT email FROM user_info WHERE id = 2", (err, res) => {
     if (err) {
       console.error(err);
       return;
