@@ -14,6 +14,7 @@ const {
   buddyAccepted,
   buddyRejected,
   buddy_Request,
+  sendFriendshipRequest,
 } = require("../controllers/controllers");
 
 const router = Router();
