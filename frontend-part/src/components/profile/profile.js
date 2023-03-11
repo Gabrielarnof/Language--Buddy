@@ -2,10 +2,10 @@ import Button from "react-bootstrap/esm/Button";
 import { useNavigate } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import { useEffect, useState } from "react";
-import Logo from "../logo/logo";
-import DropdownButtons from "../dropdownButtons/dropdownButtons";
 import "./profile.css"
 import DeleteProfileModal from "../deleteProfile/deleteProfile"; 
+import StudentHeader from "../studentHeader/studentHeader"
+
 
 function Profile() {
   const nav = useNavigate();
@@ -66,13 +66,7 @@ function Profile() {
     return (
         <div>
             <div className="wrapper">
-              <div className="main_header">
-                    <Logo />
-                    <div className="button_container">
-                      <Button className="button people_button" type="submit" onClick={()=> nav("/people")} >People</Button>
-                      <DropdownButtons />
-                    </div>
-              </div> 
+              < StudentHeader />
               
               <Card className="profile_card">
                 <Card.Header>

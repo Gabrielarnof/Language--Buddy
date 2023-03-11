@@ -17,6 +17,7 @@ function EditProfile() {
 
     const [errors, setErrors] = useState({});
     const [current_user, setCurrent] = useState({});
+    console.log(current_user)
 
     const [form, setForm] = useState({});
 

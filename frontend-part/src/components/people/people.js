@@ -1,10 +1,7 @@
 import "./people.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import Button from "react-bootstrap/esm/Button";
-import Logo from "../logo/logo";
-import StudentCard from "../studentCard/studentCard";
-import DropdownButtons from "../dropdownButtons/dropdownButtons";
+import StudentHeader from "../studentHeader/studentHeader";
 import { useNavigate } from "react-router-dom";
 import SearchFilter from "../filter/SearchFilter";
 
@@ -64,34 +61,16 @@ function People() {
   return (
     <div>
       <div className="wrapper">
-        <div className="main_header">
-          <Logo />
-          <div className="button_container">
-            <Button className="button people_button" type="submit" disabled>
-              People
-            </Button>
-            <DropdownButtons />
-          </div>
-        </div>
+           <StudentHeader />
 
-        <Button className="button filter_button" type="submit">
-          Filter
-        </Button>
-        <div className="card-container">
           {loading ? (
             <p>The list of students is loading...</p>
           ) : error != "" ? (
             <p>{error}</p>
           ) : (
-            students.map((student, index) => (
-              <StudentCard students={student} key={index} />
-            ))
+            <SearchFilter students={students} />
           )}
-        </div>
       </div>
-      {/* <div>
-        <SearchFilter cards={state.card} />
-      </div> */}
     </div>
   );
 }

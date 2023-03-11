@@ -1,0 +1,33 @@
+.send_container {
+    background-color: green;
+}
+
+.sent_card {
+    display: flex;
+    justify-content: space-between;
+    border-style: double;
+}
+
+.sent_card.hidden {
+   visibility: hidden;
+}
+
+.inbox_container {
+    background-color: yellow;
+}
+
+.inbox_card {
+    display: flex;
+    justify-content: space-between;
+    border-style: double;
+}
+
+.result_container {
+    background-color: aqua;
+}
+
+.buddy_card {
+    display: flex;
+    justify-content: space-between;
+    border-style: double;
+}

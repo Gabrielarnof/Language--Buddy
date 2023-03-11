@@ -1,0 +1,23 @@
+.main_header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+ }
+ 
+ .button_container {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   padding-top:  12px;
+ }
+ 
+ .people_button {
+   margin: 0 20px;
+ }
+ 
+ .request_button {
+   width: 200px
+ }
+ 

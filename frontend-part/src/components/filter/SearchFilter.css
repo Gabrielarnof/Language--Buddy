@@ -1,0 +1,21 @@
+.input{
+    width: 200px;
+    height: 39px;
+    font-size: 15ppx;
+    margin-right: 10px;
+}
+
+.select-tag{
+    width: 200px;
+    height: 39px;
+    font-size: 15ppx;
+    margin-right: 10px;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top:  30px;
+}

@@ -1,5 +1,7 @@
 const authenticate = require("../middleware/authenticate");
-const { Router } = require("express");
+const {
+  Router
+} = require("express");
 
 const {
   getAll,
@@ -10,11 +12,15 @@ const {
   edit,
   delete_user,
   auth,
-  // buddy_request,
-  buddyAccepted,
+    buddyAccepted,
   buddyRejected,
   buddy_Request,
-  sendFriendshipRequest,
+
+  connections,
+  createConnection,
+  updateConnection,
+  deleteConnection
+
 } = require("../controllers/controllers");
 
 const router = Router();
@@ -33,12 +39,20 @@ router.delete("/users/:id", authenticate, delete_user);
 
 router.post("/auth", authenticate, auth);
 
+
 router.post("/request", buddy_Request);
 
 router.post("/accepted", buddyAccepted);
 
 router.post("/rejected", buddyRejected);
 
-// router.post("/request", emailRequest);
+router.get("/connections", authenticate, connections);
 
-https: module.exports = router;
+router.post("/connections", authenticate, createConnection);
+
+router.put("/connections/:id", authenticate, updateConnection);
+
+router.delete("/connections/:id", authenticate, deleteConnection);
+
+module.exports = router;
+
