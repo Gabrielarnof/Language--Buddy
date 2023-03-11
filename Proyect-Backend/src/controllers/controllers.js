@@ -1,6 +1,7 @@
 const pool = require("../db");
 const bcrypt = require("bcrypt");
 const jwtGenerator = require("../utils/jwtGenerator");
+const nodemailer = require("nodemailer");
 
 // Sentences SQL
 const _getAll = "SELECT * FROM user_info";
@@ -14,6 +15,8 @@ const updateConnectionStatus =
 
 const getAll = async (req, res) => {
   try {
+
+
     await pool.query("SELECT user_info.*, \
                             language_level.levels, \
                             languages.language_name \
@@ -23,6 +26,7 @@ const getAll = async (req, res) => {
       (error, result) => {
         res.json(result.rows);
       });
+
   } catch (error) {
     res.json({
       error: error.message
@@ -35,7 +39,6 @@ const getById = async (req, res) => {
     id
   } = req.params;
   try {
-
     await pool.query(
       "SELECT user_info.*, \
               language_level.levels, \
@@ -93,10 +96,12 @@ const createUser = async (req, res) => {
     //I changed a little because the field with newuser.id was empty and I could not get id
     // const current_id = newUser.rows[0].id;
     const jwtToken = jwtGenerator(newUser.rows[0].id);
+
     return res.json({
       jwtToken,
       isAuthenticated: true
     });
+
   } catch (error) {
     console.error(error.message);
     res.status(400).json(`this ${username} already exist!`);
@@ -143,6 +148,7 @@ const login = async (req, res) => {
 const edit = async (req, res) => {
   const id = req.params.id;
 
+
   const newUsername = req.body.username;
   const newName = req.body.full_name;
   const newBirth = req.body.date_of_birth;
@@ -174,31 +180,11 @@ const delete_user = async (req, res) => {
   try {
     await pool.query("DELETE FROM user_info WHERE id=$1", [id])
       .then(() => res.send(`User ${id} deleted!`))
+
   } catch (error) {
     console.log(error.message);
   }
 };
-
-// const sign_in = async (req, res) => {
-//   let email = req.body.email;
-//   let password = req.body.password;
-//   console.log(email);
-//   console.log(password);
-//   const logIn = "SELECT * FROM user_info WHERE email = $1 and password = $2";
-//   pool.query(logIn, [email, password], (error, result) => {
-//     console.log(error);
-//     console.log(result);
-//     if (result.rows.length === 0) {
-//       return res.status(400).send("User doesn't exist");
-//     } else if (
-//       (result.rows[0].email === email) &
-//       (result.rows[0].password === password)
-//     ) {
-//       return res.status(200).send("Success");
-//     }
-//   });
-// };
-
 
 const auth = async (req, res) => {
   try {
@@ -214,7 +200,6 @@ const auth = async (req, res) => {
     });
   }
 };
-
 
 const connections = async (req, res) => {
   const id = req.user.id;
@@ -332,11 +317,13 @@ const deleteConnection = async (req, res) => {
 };
 
 
-
 module.exports = {
   getAll,
   getById,
   createUser,
+  buddy_Request,
+  buddyRejected,
+  buddyAccepted,
   login,
   edit,
   delete_user,
@@ -345,4 +332,5 @@ module.exports = {
   createConnection,
   updateConnection,
   deleteConnection
+
 };
