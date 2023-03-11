@@ -42,9 +42,9 @@ router.post("/auth", authenticate, auth);
 
 router.post("/request", buddy_Request);
 
-router.post("/accepted", buddyAccepted);
+// router.post("/accepted", buddyAccepted);
 
-router.post("/rejected", buddyRejected);
+// router.post("/rejected", buddyRejected);
 
 router.get("/connections", authenticate, connections);
 
