@@ -1,7 +1,5 @@
 const authenticate = require("../middleware/authenticate");
-const {
-  Router
-} = require("express");
+const { Router } = require("express");
 
 const {
   getAll,
@@ -14,7 +12,8 @@ const {
   connections,
   createConnection,
   updateConnection,
-  deleteConnection
+  deleteConnection,
+  resetPassword,
 } = require("../controllers/controllers");
 
 const router = Router();
@@ -38,6 +37,8 @@ router.get("/connections", authenticate, connections);
 router.post("/connections", authenticate, createConnection);
 
 router.put("/connections/:id", authenticate, updateConnection);
+
+router.put("/password", resetPassword);
 
 router.delete("/connections/:id", authenticate, deleteConnection);
 

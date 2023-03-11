@@ -168,6 +168,26 @@ const edit = async (req, res) => {
   }
 };
 
+const resetPassword = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const bcryptPassword = await bcrypt.hash(password, salt);
+    let newPassword = await pool.query(
+      "UPDATE user_info SET password = $1 WHERE email = $2",
+      [bcryptPassword, email]
+    );
+    const jwtToken = jwtGenerator(newPassword.rows[0]);
+    return res.json({
+      jwtToken,
+      isAuthenticated: true,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json(error.message);
+  }
+};
+
 const delete_user = async (req, res) => {
   const { id } = req.params;
 
@@ -363,4 +383,5 @@ module.exports = {
   createConnection,
   updateConnection,
   deleteConnection,
+  resetPassword,
 };
